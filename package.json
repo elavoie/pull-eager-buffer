@@ -1,0 +1,32 @@
+{
+  "name": "pull-eager-buffer",
+  "version": "1.0.0",
+  "description": "Buffer that reads (enqueue) as much data as possible before draining (dequeuing).",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elavoie/pull-eager-buffer.git"
+  },
+  "keywords": [
+    "pull-stream",
+    "buffer",
+    "eager"
+  ],
+  "author": "Erick Lavoie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elavoie/pull-eager-buffer/issues"
+  },
+  "homepage": "https://github.com/elavoie/pull-eager-buffer#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "pull-stream": "^3.5.0",
+    "tape": "^4.6.3"
+  }
+}
