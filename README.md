@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/elavoie/pull-eager-buffer.svg?branch=master)](https://travis-ci.org/elavoie/pull-eager-buffer)
+
 Buffer that reads (enqueue) as much data as possible before draining (dequeuing).
 
 Useful for simulating the behaviour of unsynchronized transport channels, such as WebSockets when used in pull-ws.
