@@ -1,38 +1,51 @@
 module.exports = function buffer () {
   var buffer = []
+  // End of source data
   var end = false
+  // Buffer closed
+  var closed = false
   var _cb = null
 
   function drain () {
     if (!_cb) return
-    if (!end) return
 
-    var cb = _cb
-    _cb = null
+    var cb
+    if (buffer.length >= 1 && !closed) {
+      cb = _cb
+      _cb = null
 
-    if (buffer.length >= 1) {
       return cb(null, buffer.shift())
-    } else {
+    } else if (closed) {
+      cb = _cb
+      _cb = null
+
+      return cb(closed)
+    } else if (end) {
+      cb = _cb
+      _cb = null
+
+      closed = end
       return cb(end)
     }
   }
 
   return {
     sink: function (read) {
-      read(end, function next (err, data) {
+      read(closed, function next (err, data) {
         if (err) {
           end = err
           return drain()
         }
 
         buffer.push(data)
-        read(end, next)
+        drain()
+        read(closed, next)
       })
     },
     source: function (abort, cb) {
       if (abort) {
-        end = abort
-        return cb(end)
+        closed = end = abort
+        return cb(closed)
       }
 
       _cb = cb
