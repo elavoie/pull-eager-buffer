@@ -1,6 +1,6 @@
 {
   "name": "pull-eager-buffer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Buffer that reads (enqueue) as much data as possible before draining (dequeuing).",
   "main": "src/index.js",
   "directories": {

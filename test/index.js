@@ -33,3 +33,19 @@ tape('early finish with take', function (t) {
     })
   )
 })
+
+tape('two eager buffers in sequence', function (t) {
+  var actual = []
+  var expected = [0, 1, 2]
+
+  pull(
+    pull.count(2),
+    buffer(),
+    buffer(),
+    pull.through(function (x) { actual.push(x) }),
+    pull.drain(null, function () {
+      t.deepEqual(actual, expected)
+      t.end()
+    })
+  )
+})
